@@ -31,11 +31,11 @@ if os.path.exists(file_database):
     df['Atleta'] = df['Atleta'].str.strip()
     
     # --- SIDEBAR (Barra Laterale) ---
-    # NOTA: Sostituisci questo URL con il link vero del logo del Certaldo se lo hai online
-    st.sidebar.image("https://via.placeholder.com/150?text=LOGO+CERTALDO", width=150)
+    # Streamlit legge l'immagine direttamente dalla cartella di GitHub
+    st.sidebar.image("logo_certaldo_nuoto.png", width=150)
     st.sidebar.title("Filtri di Ricerca")
     
-    # 1. NUOVO FILTRO: Divisione per Sezione (Maschi/Femmine)
+    # 1. FILTRO: Divisione per Sezione (Maschi/Femmine)
     sezione = st.sidebar.radio("👥 Sezione:", ["Tutti", "Femmine", "Maschi"])
     
     if sezione == "Femmine":
@@ -64,7 +64,9 @@ if os.path.exists(file_database):
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("""
             <div class='welcome-box'>
-                <h1>🟡🔵 CERTALDO NUOTO 🔵🟡</h1>
+                <img src="https://github.com/coccifrancesco-lang/times-nuoto/blob/main/logo_certaldo_nuoto.png?raw=true" width="140" style="margin-bottom: 20px; border-radius: 10px;"><br>
+                
+                <h1>🔴🔵⚪ CERTALDO NUOTO ⚪🔵🔴</h1>
                 <h3 style='color: #555;'>Tempi di Squadra</h3>
                 <p style='font-size: 1.1em; color: #777; margin-top: 15px;'>
                     Seleziona un atleta dal menu laterale a sinistra per visualizzare la sua scheda tecnica dettagliata.
@@ -73,16 +75,11 @@ if os.path.exists(file_database):
         """, unsafe_allow_html=True)
         
         st.markdown("<br><br>", unsafe_allow_html=True)
-        st.markdown("<h3 style='text-align: center; color: #003366;'>📊 Numeri della nostra Enciclopedia:</h3>", unsafe_allow_html=True)
         
-        # Generazione automatica delle statistiche generali di squadra
-        c1, c2, c3 = st.columns(3)
-        with c1:
-            st.metric(label="🏊 Atleti Registrati", value=df['Atleta'].nunique())
+        # Mostriamo solo il numero di atleti centrato nel mezzo della pagina
+        c1, c2, c3 = st.columns([2, 1, 2])
         with c2:
-            st.metric(label="📋 Gare Tracciate", value=df['Gara'].nunique())
-        with c3:
-            st.metric(label="⏱️ Tempi in Archivio", value=len(df))
+            st.metric(label="🏊 Atleti in Squadra", value=df['Atleta'].nunique())
             
     # CASO B: Un utente ha selezionato un atleta
     else:
