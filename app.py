@@ -5,7 +5,7 @@ import os
 # Configurazione Pagina
 st.set_page_config(page_title="Records Certaldo Nuoto", page_icon="🏊‍♂️", layout="wide")
 
-# CSS Personalizzato per i colori della squadra (Giallo e Blu o quello che preferisci)
+# CSS Personalizzato per i colori della squadra
 st.markdown("""
     <style>
     .main { background-color: #f0f2f6; }
@@ -13,7 +13,7 @@ st.markdown("""
     h1 { color: #003366; }
     h2 { color: #00509d; border-bottom: 2px solid #ffcc00; padding-bottom: 10px; }
     </style>
-    """, unsafe_allow_info=True)
+    """, unsafe_allow_html=True)
 
 # --- CARICAMENTO DATI ---
 file_database = "Storico_Tempi.csv"
@@ -36,7 +36,7 @@ if os.path.exists(file_database):
     if atleta_selezionato:
         st.header(f"Scheda Atleta: {atleta_selezionato}")
         
-        # Logica dei tempi (stessa di prima)
+        # Logica dei tempi
         gare_target = ["50 SL", "100 SL", "200 SL", "400 SL", "800 SL", "1500 SL", 
                        "50 FA", "100 FA", "200 FA", "50 DO", "100 DO", "200 DO", 
                        "50 RA", "100 RA", "200 RA", "100 MX", "200 MX", "400 MX"]
@@ -59,7 +59,7 @@ if os.path.exists(file_database):
         
         final_df = pd.DataFrame(res)
 
-        # Visualizzazione a due colonne
+        # Visualizzazione a due colonne affiancate
         c1, c2 = st.columns(2)
         with c1:
             st.subheader("Vasca Corta (25m)")
