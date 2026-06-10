@@ -55,7 +55,7 @@ if os.path.exists(file_database):
         placeholder="Scegli un atleta..."
     )
     
-    st.sidebar.info("Scegli il sesso per ridurre la lista, poi seleziona il nome dell'atleta per vedere i suoi record personali.")
+    st.sidebar.info("Seleziona il nome dell'atleta per vedere i suoi record personali.")
 
     # --- CORPO PRINCIPALE ---
     
@@ -81,7 +81,7 @@ if os.path.exists(file_database):
         st.markdown("""
             <div class='welcome-box'>
                 <h1>🔴🔵⚪ CERTALDO NUOTO ⚪🔵🔴</h1>
-                <h3 style='color: #555;'>Portale Ufficiale dei Record e Tempi di Squadra</h3>
+                <h3 style='color: #555;'>Record e Tempi di Squadra</h3>
                 <p style='font-size: 1.1em; color: #777; margin-top: 15px;'>
                     Seleziona un atleta dal menu laterale a sinistra per visualizzare la sua scheda tecnica dettagliata.
                 </p>
