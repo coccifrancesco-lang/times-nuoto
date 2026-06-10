@@ -6,6 +6,7 @@ import os
 st.set_page_config(page_title="Records Certaldo Nuoto", page_icon="🏊‍♂️", layout="wide")
 
 # CSS Personalizzato per i colori della squadra e la home page
+# Assicurati che questa parte sia esattamente così
 st.markdown("""
     <style>
     .main { background-color: #f0f2f6; }
@@ -31,8 +32,7 @@ if os.path.exists(file_database):
     df['Atleta'] = df['Atleta'].str.strip()
     
     # --- SIDEBAR (Barra Laterale) ---
-    # Streamlit legge l'immagine direttamente dalla cartella di GitHub
-    st.sidebar.image("logo_certaldo_nuoto.png", width=150)
+    # Rimosso il logo dalla sidebar come richiesto
     st.sidebar.title("Filtri di Ricerca")
     
     # 1. FILTRO: Divisione per Sezione (Maschi/Femmine)
@@ -61,13 +61,27 @@ if os.path.exists(file_database):
     
     # CASO A: Il sito è appena stato aperto (Nessun atleta selezionato)
     if atleta_selezionato is None:
+        # Spazio sopra per distanziare il logo dal bordo
         st.markdown("<br>", unsafe_allow_html=True)
+        
+        # 1. LOGO CENTRATO IN ALTO (Fuori e sopra la welcome-box)
+        # Ingrandito a 200px e centrato
+        st.markdown(f"""
+            <div style="text-align: center; margin-top: 20px;">
+                <img src="https://github.com/coccifrancesco-lang/times-nuoto/blob/main/logo_certaldo_nuoto.png?raw=true" width="200" style="border-radius: 10px;">
+            </div>
+        """, unsafe_allow_html=True)
+        
+        # Spazio tra il logo e la welcome-box
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        # 2. SCATOLA DI BENVENUTO (Welcome Box) CON HTML PULITO E RENDERIZZATO CORRETTAMENTE
+        # Ripristinate le info originali, inclusi i cerchi 🔴🔵⚪ e il testo completo
+        # Assicurati che questa parte sia esattamente così
         st.markdown("""
             <div class='welcome-box'>
-                <img src="https://github.com/coccifrancesco-lang/times-nuoto/blob/main/logo_certaldo_nuoto.png?raw=true" width="140" style="margin-bottom: 20px; border-radius: 10px;"><br>
-                
                 <h1>🔴🔵⚪ CERTALDO NUOTO ⚪🔵🔴</h1>
-                <h3 style='color: #555;'>Tempi di Squadra</h3>
+                <h3 style='color: #555;'>Portale Ufficiale dei Record e Tempi di Squadra</h3>
                 <p style='font-size: 1.1em; color: #777; margin-top: 15px;'>
                     Seleziona un atleta dal menu laterale a sinistra per visualizzare la sua scheda tecnica dettagliata.
                 </p>
@@ -76,7 +90,7 @@ if os.path.exists(file_database):
         
         st.markdown("<br><br>", unsafe_allow_html=True)
         
-        # Mostriamo solo il numero di atleti centrato nel mezzo della pagina
+        # 3. STATISTICA SINGOLA CENTRATA (Solo il numero di atleti)
         c1, c2, c3 = st.columns([2, 1, 2])
         with c2:
             st.metric(label="🏊 Atleti in Squadra", value=df['Atleta'].nunique())
